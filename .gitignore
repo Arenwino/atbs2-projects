@@ -1,0 +1,4 @@
+venv
+*.py[cod]
+__pycache__
+settings.json
