@@ -2,3 +2,11 @@ venv
 *.py[cod]
 __pycache__
 settings.json
+capitalsquiz*
+randomQuizGenerator.py
+Chapter_9/madlibs.txt
+Chapter_9/madlibs_subs.txt
+Chapter_9/regex_search_test.txt
+Chapter_9/mcb.bak
+Chapter_9/mcb.dat
+Chapter_9/mcb.dir
