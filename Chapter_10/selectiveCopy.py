@@ -13,15 +13,13 @@ location they are in to a new folder.
 # selectiveCopy.py - Copies files of a certain filetype to a new location
 # Usage: python selectiveCopy.py filetype oldDir newDir
 
-import shutil, sys, pathlib, os
+import shutil, sys, os
+from pathlib import Path
 
 if(len(sys.argv) == 4):
-    oldPath = pathlib.Path(sys.argv[2])
-    newPath = pathlib.Path(sys.argv[3])
-    fileGenerator = oldPath.glob(f'*.{sys.argv[1]}')
-    # TODO: find out how to check for an empty generator
-    print(fileGenerator)
-    for dirname in fileGenerator:
+    oldPath = Path(sys.argv[2])
+    newPath = Path(sys.argv[3])
+    for dirname in oldPath.glob(f'**/*.{sys.argv[1]}'): # **/.* find recursively all files
         if(os.path.exists(newPath) == False): # If the new dir doesn't exist, create it
             newPath.mkdir()
         print(f'Copying {dirname} to {newPath}')
