@@ -32,7 +32,7 @@ def findMatchingFiles(rootDir, prefix):
         if mo is not None:
             intLiteral = mo.group(2)
             fileSuffix = mo.group(3)
-            gapFileList.append([Path(rootDir / filename).resolve(), intLiteral, int(intLiteral), fileSuffix])
+            gapFileList.append([Path(rootDir).resolve() / filename, intLiteral, int(intLiteral), fileSuffix])
 
     return gapFileList
 
