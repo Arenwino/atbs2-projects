@@ -73,10 +73,7 @@ def renameFiles(sortedFileList, lengthIntLiteral, filenamePrefix, gapAt=0):
 
             if (i is not gapFile[2] or len(gapFile[1]) is not lengthIntLiteral):
                 # i:0{lengthNumber} pads the new number to the length of the longest int literal
-                src = gapFile[0]
-                dest = Path(os.path.dirname(gapFile[0])) / f'{filenamePrefix}{i:0{lengthIntLiteral}}{gapFile[3]}'
-                logging.info(f'renaming {src.name} to {dest.name}')
-                shutil.move(src, dest)
+                shutil.move(gapFile[0], Path(os.path.dirname(gapFile[0])) / f'{filenamePrefix}{i:0{lengthIntLiteral}}{gapFile[3]}')
 
 if __name__ == "__main__":
 
