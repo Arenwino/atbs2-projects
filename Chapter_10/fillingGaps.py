@@ -13,26 +13,26 @@ Have the program rename all the later files to close this gap.
 # fillingGaps.py - Renames all files in a dir, so there are no gaps in the
 # numbering sequence. It checks where the sequence start and pads all files 
 # to the same length of leading zeros 
-# Usage: python fillingGaps.py searchPath prefix
+# Usage: python fillingGaps.py rootDir prefix
 
 import sys, os, re, shutil
 from pathlib import Path
 from operator import itemgetter
 
-def findMatchingFiles(searchPath, prefix):
-    ''' Matches the files in the searchPath to the given prefix and
+def findMatchingFiles(rootDir, prefix):
+    ''' Matches the files in the rootDir to the given prefix and
         returns a list with the Path, integer literal, the integer literal 
         as int and the suffix of the filename.
     '''
     pattern = re.compile(r'(' + prefix + r')(\d+)(.*)')
     gapFileList = []
 
-    for filename in os.listdir(searchPath):
+    for filename in os.listdir(rootDir):
         mo = pattern.match(filename) 
         if mo is not None:
             intLiteral = mo.group(2)
             fileSuffix = mo.group(3)
-            gapFileList.append([Path(searchPath / filename).resolve(), intLiteral, int(intLiteral), fileSuffix])
+            gapFileList.append([Path(rootDir / filename).resolve(), intLiteral, int(intLiteral), fileSuffix])
 
     return gapFileList
 
@@ -70,10 +70,10 @@ def renameFiles(sortedFileList, lengthIntLiteral):
 if __name__ == "__main__":
 
     if(len(sys.argv) == 3):
-        searchPath = Path(sys.argv[1])
+        rootDir = Path(sys.argv[1])
         prefix = sys.argv[2]
 
-        gapFileList = findMatchingFiles(searchPath, prefix)
+        gapFileList = findMatchingFiles(rootDir, prefix)
 
         # Sort the list of files by the number
         sortedFileList = sorted(gapFileList, key=itemgetter(int(2)))
@@ -81,5 +81,5 @@ if __name__ == "__main__":
         renameFiles(sortedFileList, lengthIntLiteral)
 
     else:
-        print('Usage: python fillingGaps.py searchPath prefix')
+        print('Usage: python fillingGaps.py rootDir prefix')
 
