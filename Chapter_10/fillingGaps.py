@@ -18,6 +18,9 @@ Have the program rename all the later files to close this gap.
 import sys, os, re, shutil
 from pathlib import Path
 from operator import itemgetter
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def findMatchingFiles(rootDir, prefix):
     ''' Matches the files in the rootDir to the given prefix and
@@ -65,7 +68,10 @@ def renameFiles(sortedFileList, lengthIntLiteral):
             '''
             if (i is not gapFile[2] or len(gapFile[1]) is not lengthIntLiteral):
                 # i:0{lengthNumber} pads the new number to the length of the longest int literal
-                shutil.move(gapFile[0], Path(os.path.dirname(gapFile[0])) / f'{prefix}{i:0{lengthIntLiteral}}{gapFile[3]}')
+                src = gapFile[0]
+                dest = Path(os.path.dirname(gapFile[0])) / f'{filenamePrefix}{i:0{lengthIntLiteral}}{gapFile[3]}'
+                logging.info(f'renaming {src.name} to {dest.name}')
+                shutil.move(src, dest)
 
 if __name__ == "__main__":
 
