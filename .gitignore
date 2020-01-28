@@ -10,3 +10,14 @@ regex_search_test.txt
 mcb.bak
 mcb.dat
 mcb.dir
+Chapter_16/**/*.csv
+Chapter_10/backupToZip.py
+Chapter_10/renameDates.py
+Chapter_11/buggyAddingProgram.py
+Chapter_11/coinFlip.py
+Chapter_11/errorExample.py
+Chapter_11/factorialLog.py
+Chapter_16/removeCsvHeader.py
+TODO.txt
+Chapter_16/getOpenWeather.py
+Chapter_16/**/*.xlsx
