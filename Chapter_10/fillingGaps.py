@@ -10,24 +10,35 @@ Have the program rename all the later files to close this gap.
 
 '''
 
+<<<<<<< HEAD
 # fillingGaps.py - Renames all files in a dir, so there are no gaps in the
 # numbering sequence. It checks where the sequence start and pads all files 
 # to the same length of leading zeros 
 # Usage: python fillingGaps.py rootDir prefix
+=======
+# fillingGaps.py - Renames all files with the given prefix in a dir, 
+# so there are no gaps in the numbering sequence. It checks where the 
+# sequence start and pads all files to the same length of leading zeros 
+# Usage: python fillingGaps.py rootDir filenamePrefix
+>>>>>>> insertGaps
 
 import sys, os, re, shutil
 from pathlib import Path
 from operator import itemgetter
 import logging
 
+<<<<<<< HEAD
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def findMatchingFiles(rootDir, prefix):
+=======
+def findMatchingFiles(rootDir, filenamePrefix):
+>>>>>>> insertGaps
     ''' Matches the files in the rootDir to the given prefix and
         returns a list with the Path, integer literal, the integer literal 
         as int and the suffix of the filename.
     '''
-    pattern = re.compile(r'(' + prefix + r')(\d+)(.*)')
+    pattern = re.compile(r'(' + filenamePrefix + r')(\d+)(.*)')
     gapFileList = []
 
     for filename in os.listdir(rootDir):
@@ -50,7 +61,7 @@ def getLongestIntLiteral(sortedFileList):
             lengthIntLiteral = len(sortedFile[1])
     return lengthIntLiteral
 
-def renameFiles(sortedFileList, lengthIntLiteral):
+def renameFiles(sortedFileList, lengthIntLiteral, filenamePrefix, gapAt=0):
     ''' Loops through every file in the list. If the number in
         the file name is not the next in the sequence or hasn't the right 
         amount of leading zeros renames it. 
@@ -60,32 +71,51 @@ def renameFiles(sortedFileList, lengthIntLiteral):
     # Find out where the sequence begins
     start = sortedFileList[0][2]
 
+    if(gapAt is not 0):
+        sortedFileList = sortedFileList[gapAt-sortedFileList[0][2]:]
+        start=gapAt-1+start
+
     for i, gapFile in enumerate(sortedFileList, start=start):
 
             ''' Check if the index is not the same as the number OR
                 the length of the integer literal is not the length of the longest 
                 integer literal in the list
             '''
+
             if (i is not gapFile[2] or len(gapFile[1]) is not lengthIntLiteral):
                 # i:0{lengthNumber} pads the new number to the length of the longest int literal
+<<<<<<< HEAD
                 src = gapFile[0]
                 dest = Path(os.path.dirname(gapFile[0])) / f'{filenamePrefix}{i:0{lengthIntLiteral}}{gapFile[3]}'
                 logging.info(f'renaming {src.name} to {dest.name}')
                 shutil.move(src, dest)
+=======
+                shutil.move(gapFile[0], Path(os.path.dirname(gapFile[0])) / f'{filenamePrefix}{i:0{lengthIntLiteral}}{gapFile[3]}')
+>>>>>>> insertGaps
 
 if __name__ == "__main__":
 
     if(len(sys.argv) == 3):
         rootDir = Path(sys.argv[1])
+<<<<<<< HEAD
         prefix = sys.argv[2]
 
         gapFileList = findMatchingFiles(rootDir, prefix)
+=======
+        filenamePrefix = sys.argv[2]
+
+        gapFileList = findMatchingFiles(rootDir, filenamePrefix)
+>>>>>>> insertGaps
 
         # Sort the list of files by the number
         sortedFileList = sorted(gapFileList, key=itemgetter(int(2)))
         lengthIntLiteral = getLongestIntLiteral(sortedFileList)
-        renameFiles(sortedFileList, lengthIntLiteral)
+        renameFiles(sortedFileList, lengthIntLiteral, filenamePrefix)
 
     else:
+<<<<<<< HEAD
         print('Usage: python fillingGaps.py rootDir prefix')
+=======
+        print('Usage: python fillingGaps.py rootDir filenamePrefix')
+>>>>>>> insertGaps
 
