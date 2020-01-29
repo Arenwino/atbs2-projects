@@ -9,6 +9,7 @@ into numbered files so that a new file can be added.
 '''
 # insertGaps.py - Inserts a gap in sequence of numbered files with the 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # given prefix. It moves the renamed files temporarily into a temp dir  
 # Usage: python insertGaps.py rootDir filenamePrefix gapAt
 # TODO: Errorhandling, Comments
@@ -17,6 +18,11 @@ into numbered files so that a new file can be added.
 # files are moved temporarily into a temp dir.  
 # Usage: python insertGaps.py rootDir filenamePrefix gapAt
 >>>>>>> 496ed36... adds insertGaps and modifications to fillingGaps
+=======
+# given prefix. It uses mostly the functions of fillingGaps. The renamed 
+# files are moved temporarily into a temp dir.  
+# Usage: python insertGaps.py rootDir filenamePrefix gapAt
+>>>>>>> 3a4884ec5b0a92d6ea2933cae38b252fa474e348
 
 import os, shutil, sys
 from operator import itemgetter
@@ -41,6 +47,7 @@ if __name__ == "__main__":
 
         tempDirPath.mkdir()
 <<<<<<< HEAD
+<<<<<<< HEAD
         # TODO: Ugly Hack with 'temp/'
         fg.renameFiles(sortedFileList, lengthIntLiteral, 'temp/' + filenamePrefix , gapAt=gapAt)
         # TODO: listdir() gibt nur den Namen ohne Pfad zurueck, deswegen erst ins temp
@@ -50,6 +57,8 @@ if __name__ == "__main__":
             shutil.move(fn, rootDirPath)
         os.chdir(rootDirPath)
 =======
+=======
+>>>>>>> 3a4884ec5b0a92d6ea2933cae38b252fa474e348
 
         # Move the renamed files into a temp-dir, so that they are not 
         # overwritten by themselves.
@@ -58,7 +67,10 @@ if __name__ == "__main__":
         # Move the files back to the original dir
         for fn in os.listdir(tempDirPath):
             shutil.move(os.path.join(tempDirPath, fn), rootDirPath)
+<<<<<<< HEAD
 >>>>>>> 496ed36... adds insertGaps and modifications to fillingGaps
+=======
+>>>>>>> 3a4884ec5b0a92d6ea2933cae38b252fa474e348
         tempDirPath.rmdir()
 
     else:
