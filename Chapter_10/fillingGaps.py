@@ -10,23 +10,10 @@ Have the program rename all the later files to close this gap.
 
 '''
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-# fillingGaps.py - Renames all files in a dir, so there are no gaps in the
-# numbering sequence. It checks where the sequence start and pads all files 
-# to the same length of leading zeros 
-# Usage: python fillingGaps.py rootDir prefix
-=======
->>>>>>> 3a4884ec5b0a92d6ea2933cae38b252fa474e348
 # fillingGaps.py - Renames all files with the given prefix in a dir, 
 # so there are no gaps in the numbering sequence. It checks where the 
 # sequence start and pads all files to the same length of leading zeros 
 # Usage: python fillingGaps.py rootDir filenamePrefix
-<<<<<<< HEAD
-=======
->>>>>>> insertGaps
->>>>>>> 3a4884ec5b0a92d6ea2933cae38b252fa474e348
 
 import sys, os, re, shutil
 from pathlib import Path
@@ -83,7 +70,6 @@ def renameFiles(sortedFileList, lengthIntLiteral, filenamePrefix, gapAt=0):
                 the length of the integer literal is not the length of the longest 
                 integer literal in the list
             '''
-
             if (i is not gapFile[2] or len(gapFile[1]) is not lengthIntLiteral):
                 # i:0{lengthNumber} pads the new number to the length of the longest int literal
                 src = gapFile[0]
