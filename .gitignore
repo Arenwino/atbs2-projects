@@ -3,3 +3,4 @@ venv
 __pycache__
 .vscode
 **/book_examples
+geckodriver.log
