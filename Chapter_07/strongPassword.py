@@ -1,7 +1,7 @@
 '''
 Chapter 7 Pattern Matching with Regular Expressions
 
-Date Detection
+Strong Password Detection
 
 Write a regular expression that can detect dates in the DD/MM/YYYY format. 
 Assume that the days range from 01 to 31, the months range from 01

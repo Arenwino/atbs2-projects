@@ -2,6 +2,7 @@
 Chapter 8 Input Validation
 
 Write Your Own Multiplication Quiz
+
 To see how much PyInputPlus is doing for you, try re-creating the 
 multiplication quiz project on your own without importing it. This program will
 prompt the user with 10 multiplication questions, ranging from 0 × 0 to
